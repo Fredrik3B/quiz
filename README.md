@@ -2,5 +2,4 @@
 
 Er en veldig kul python quiz, nice
 
-test
-
+Dette er skrevet på VS code
