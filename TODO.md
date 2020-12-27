@@ -1,3 +1,3 @@
-1. Smile, vi må smile
+1. 
 2. 
 3. 
