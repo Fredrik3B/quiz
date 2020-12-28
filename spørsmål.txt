@@ -1,12 +1,2 @@
-Hvor gammel er Nikolai og Fredrik til sammen? : 35
-Hvor bor vi? : Sørkedalen
-Hvor høyt er Mount Everest og Galdhøpiggen til sammen? : 11318
-Hvor mange dager er det igjen av ferien? : 9
-Hvor lenge etter unionsoppløsningen ble sif stiftet? : -19
-Hvilket årstall kom Amundsen frem til Sørpolen? : 1911
-Hvor mange gjester er vi idag? : 4
-Hvem var første til å krysse Nordpolen? (fornavn) : Bjørge
-Hva heter PC'en som TV'en bruker? : RaspberryPi
-Hvor mange Star Wars serier ble lansert i desember? : 10
-Hva er Baby Yoda sitt egentlige navn? : Grogu
-Hvilket språk ble spillet skrevet i? : Python
+Question : Answer 
+Why is this example so cool : I have no idea
