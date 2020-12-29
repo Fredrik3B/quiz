@@ -4,7 +4,12 @@
 <div class="container">
     <form method="POST">
         {% csrf_token %}
-        {{form.as_p}}
+        <label for="username">Brukernavn:</label>
+        {{form.username}}
+        <label for="password1">Passord:</label>
+        {{form.password1}}
+        <label for="password2">Gjenta passord:</label>
+        {{form.password2}}
         <button type="submit">Logg inn</button>
     </form>
     <span>Har du ikke konto <a href="{% url 'accounts:register' %}"><strong>registrer deg her</strong></a>!</span>
