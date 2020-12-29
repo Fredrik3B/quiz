@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Logg inn</button>
+    </form>
+    <span>Har du ikke konto <strong>registrer deg her</strong></a>!</span>
+</div>
+{% endblock %}
