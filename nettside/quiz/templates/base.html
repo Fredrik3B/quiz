@@ -6,6 +6,8 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="icon" href="{% static 'images/favicon.ico' %}"  type="image/icon">
+    {% block css %}
+    {% endblock css %}
 </head>
 <body>
     <nav>
@@ -16,7 +18,7 @@
             <li><a href="{% url 'accounts:login' %}">Logg inn</a></li>
             {% endif %}
         </ul>
-    <nav>
+    </nav>
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}

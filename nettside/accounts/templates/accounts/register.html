@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<form method="POST">
-    {% csrf_token %}
-    <label for="username">Brukernavn:</label>
-    {{form.username}}
-    <label for="password1">Passord:</label>
-    {{form.password1}}
-    <label for="password2">Gjenta passord:</label>
-    {{form.password2}}
-    <button type="submit">Registrer</button>
-</form>
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+{% endblock css %}
 
-<span>Har du allerede konto? <a href="{% url 'accounts:login' %}"><strong>Logg inn</strong></a> i steden for.</span>
+{% block content %}
+<div class="user_container">
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Brukernavn:</label>
+        {{form.username}}<br>
+        <label for="password1">Passord:</label>
+        {{form.password1}}<br>
+        <label for="password2">Gjenta passord:</label>
+        {{form.password2}}<br>
+        <button type="submit">Registrer</button>
+    </form>
+    <span>Har du allerede konto? <a href="{% url 'accounts:login' %}"><strong>Logg inn</strong></a> i steden for.</span>
+</div>
+
 {% endblock content %}

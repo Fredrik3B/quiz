@@ -1,0 +1,27 @@
+body{
+    background-color: #c4cde6
+}
+.user_container {
+    margin: 10% auto;
+    padding: 2rem 0;
+    width: 25%;
+    text-align: center;
+    border-radius: 1.5rem;
+    background-color: #fdfdfd
+}
+input {
+    margin: 10px 2px;
+    width:  60%;
+    height: 3rem;
+    border: 3px dashed black;
+    border-radius: .7rem
+}
+button {
+    width: 20%;
+    height: 3rem;
+    margin: 10px 2px;
+}
+form {
+    margin-bottom: 1rem;
+}
+

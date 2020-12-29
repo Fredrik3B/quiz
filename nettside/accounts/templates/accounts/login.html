@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+{% endblock css %}
+
 {% block content %}
-<div class="container">
+<div class="user_container">
     <form method="POST">
         {% csrf_token %}
-        <label for="username">Brukernavn:</label>
-        {{form.username}}
-        <label for="password1">Passord:</label>
-        {{form.password1}}
-        <label for="password2">Gjenta passord:</label>
-        {{form.password2}}
+        <!--<label for="username">Brukernavn:</label>-->
+        {{form.username}}<br>
+        <!--<label for="password1">Passord:</label>-->
+        {{form.password}}<br>
         <button type="submit">Logg inn</button>
     </form>
     <span>Har du ikke konto <a href="{% url 'accounts:register' %}"><strong>registrer deg her</strong></a>!</span>
