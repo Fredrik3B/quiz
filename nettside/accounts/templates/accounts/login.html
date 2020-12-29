@@ -7,6 +7,6 @@
         {{form.as_p}}
         <button type="submit">Logg inn</button>
     </form>
-    <span>Har du ikke konto <strong>registrer deg her</strong></a>!</span>
+    <span>Har du ikke konto <a href="{% url 'accounts:register' %}"><strong>registrer deg her</strong></a>!</span>
 </div>
 {% endblock %}

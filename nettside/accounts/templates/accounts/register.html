@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+</form>
+
+<span>Har du allerede konto? <a href="{% url 'accounts:login' %}"><strong>Logg inn</strong></a> i steden for.</span>
+{% endblock content %}
