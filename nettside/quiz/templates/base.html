@@ -12,7 +12,7 @@
 <body>
     <nav>
         <ul>
-            <img src="logo.png"/>
+            <img src="{% static 'images/logo.svg' %}"width="30" height="30">
             {% if user.is_authenticated %}
             <li><a href="{% url 'accounts:logout' %}">Logg ut</a></li>
             {% else %}

@@ -6,16 +6,17 @@
 {% endblock css %}
 
 {% block content %}
+
 <div class="user_container">
     <form method="POST">
         {% csrf_token %}
         {{form.username}}<br>
         {{form.password1}}<br>
         {{form.password2}}<br>
-        <img src="{% static 'images/logo.png' %}">
+        <br><img src="{% static 'images/logo.svg' %}"width="80" height="80"></br>
         <button type="submit">Registrer</button>
     </form>
-    <span>Har du allerede konto? <a href="{% url 'accounts:login' %}"><strong>Logg inn</strong></a> i steden for.</span>
+    <span><font face="Arial">"Har du allerede konto? <a href="{% url 'accounts:login' %}"><strong>Logg inn</strong></a> i steden for.</font></span>
 </div>
 
 {% endblock content %}
