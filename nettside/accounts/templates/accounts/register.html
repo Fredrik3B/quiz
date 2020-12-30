@@ -12,7 +12,7 @@
         {{form.username}}<br>
         {{form.password1}}<br>
         {{form.password2}}<br>
-        <img Src="{% static ‘images/logo.png %} />
+        <img Src={% static 'images/logo.png %}' />
         <button type="submit">Registrer</button>
     </form>
     <span>Har du allerede konto? <a href="{% url 'accounts:login' %}"><strong>Logg inn</strong></a> i steden for.</span>
