@@ -13,8 +13,9 @@
         {{form.username}}<br>
         <!--<label for="password1">Passord:</label>-->
         {{form.password}}<br>
+        <br><img src="{% static 'images/logo.png' %}"width="50" height="50"></br>
         <button type="submit">Logg inn</button>
     </form>
-    <span>Har du ikke konto <a href="{% url 'accounts:register' %}"><strong>registrer deg her</strong></a>!</span>
+    <span><font face="Arial">Har du ikke konto <a href="{% url 'accounts:register' %}"><strong>registrer deg her</strong></font></a>!</span>
 </div>
 {% endblock %}

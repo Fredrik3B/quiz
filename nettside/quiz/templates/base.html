@@ -12,11 +12,11 @@
 <body>
     <nav>
         <ul>
-            <img src="{% static 'images/logo.svg' %}"width="30" height="30">
+            <img src="{% static 'images/logo.png' %}"width="30" height="30">
             {% if user.is_authenticated %}
-            <li><a href="{% url 'accounts:logout' %}">Logg ut</a></li>
+            <li><font face="Arial"><a href="{% url 'accounts:logout' %}">Logg ut</a></font></li>
             {% else %}
-            <li><a href="{% url 'accounts:login' %}">Logg inn</a></li>
+            <li><font face="Arial"><a href="{% url 'accounts:login' %}">Logg inn</a></font></li>
             {% endif %}
         </ul>
     </nav>
