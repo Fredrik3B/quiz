@@ -21,14 +21,14 @@ antall = len(alle_spørsmål)
 
 for spørsmål, svar in alle_spørsmål.items():
     print(spørsmål)
-    ditt_svar = input(str("Write your answer: ")).lower().strip()
+    ditt_svar = input(str("Svar: ")).lower().strip()
     if svar == ditt_svar:
-        print("Correct!")
+        print("Riktigct!")
         poeng += 1
         sleep(2)
         continue
 
-    print("Wrong!")
+    print("Feil!")
     random = randint(1,3)
     if random == 1:
         system("mpv rick_roll.mkv") 
