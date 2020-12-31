@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import CreateUserForm
+from .forms import CreateUserForm, LogInForm
 from time import sleep
 
 # Create your views here.
@@ -34,7 +33,7 @@ def register(request):
 
 def login_user(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request=request, data=request.POST)
+        form = LogInForm(request=request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
@@ -49,7 +48,7 @@ def login_user(request):
         else:
             messages.error(request, "Feil brukernavn eller passord")
 
-    form = AuthenticationForm()
+    form = LogInForm()
     return render(request, "accounts/login.html", {"form":form})
 
 
