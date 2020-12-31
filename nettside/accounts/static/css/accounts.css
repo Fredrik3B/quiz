@@ -2,7 +2,7 @@ body{
     background-color: #c4cde6
 }
 .user_container {
-    margin: 10% auto;     
+    margin: 10% auto;
     padding: 2rem 0;
     width: 25%;
     text-align: center;
@@ -23,5 +23,21 @@ button {
 }
 form {
     margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 814px) {
+    .user_container {
+        width: 75%;
+    }
+}
+@media only screen and (max-width: 1200px) and (min-width: 815px)  {
+    .user_container {
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 1400px) and (min-width: 1201px) {
+    .user_container {
+        width: 33%;
+    }
 }
 
