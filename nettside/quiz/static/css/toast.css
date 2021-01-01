@@ -1,0 +1,54 @@
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 0.85;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 0.85;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 0.85;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 0.85;}
+    to {bottom: 0; opacity: 0;}
+}
+
+
+.show-toast {
+    /* visibility: visible; */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 3.5s;
+    animation: fadein 1s, fadeout 1.5s 5.5s;
+}
+.toast-message {
+    /* visibility: hidden; */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+    opacity: 0.85;
+}
+.info {
+    background-color: blue;
+}
+.warning {
+    background-color: yellow;
+}
+.error {
+    background-color: red;
+}
+.succes {
+    background-color: green;
+}
