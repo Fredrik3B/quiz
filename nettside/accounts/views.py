@@ -7,6 +7,12 @@ from time import sleep
 # Create your views here.
 def register(request):
     template_name = "accounts/register.html"
+    if request.user.is_authenticated:
+        messages.warning(request, "Du er allerede logget inn, for å registrere en ny bruker må du først logge deg ut")
+        prev_page = request.META.get('HTTP_REFERER')
+        if not prev_page:
+            return redirect("quiz:quiz")
+        return redirect(prev_page)
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
@@ -32,6 +38,12 @@ def register(request):
 
 
 def login_user(request):
+    if request.user.is_authenticated:
+        messages.warning(request, "Du er allerede logget inn, vil du logge inn som en annen bruker må du først logge deg ut")
+        prev_page = request.META.get('HTTP_REFERER')
+        if not prev_page:
+            return redirect("quiz:quiz")
+        return redirect(prev_page)
     if request.method == 'POST':
         form = LogInForm(request=request, data=request.POST)
         if form.is_valid():
