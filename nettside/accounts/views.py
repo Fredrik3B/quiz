@@ -23,9 +23,6 @@ def register(request):
             return redirect("quiz:quiz")
 
         else:
-            for msg in form.error_messages:
-                messages.error(request, f"{msg}: {form.error_messages[msg]}")
-
             return render(request, template_name, {"form":form})
 
     form = CreateUserForm()

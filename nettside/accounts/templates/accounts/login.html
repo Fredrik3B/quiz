@@ -9,11 +9,11 @@
 <div class="user_container">
     <form method="POST">
         {% csrf_token %}
-        <!--<label for="username">Brukernavn:</label>-->
-        {{form.username}}<br>
-        <!--<label for="password1">Passord:</label>-->
-        {{form.password}}<br>
-        <br><img src="{% static 'images/logo.png' %}"width="50" height="50"></br>
+        {% for field in form %}
+            {{ field }}<br>
+        {% endfor %}
+
+        <img src="{% static 'images/logo.png' %}"width="50" height="50"></br>
         <button type="submit">Logg inn</button>
     </form>
     <span><font face="Arial">Har du ikke konto <a href="{% url 'accounts:register' %}"><strong>registrer deg her</strong></font></a>!</span>
