@@ -5,6 +5,9 @@
     <title>{% block title %}{% endblock title %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% if messages %}
+        <link rel="stylesheet" href="{% static 'css/toast.css' %}">
+    {% endif %}
     <link rel="icon" href="{% static 'images/favicon.ico' %}"  type="image/icon">
     {% block css %}
     {% endblock css %}
@@ -21,14 +24,18 @@
         </ul>
     </nav>
     {% if messages %}
-    <ul class="messages">
+    <ul id="messages">
         {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        <li class="{% if message.tags %}{{ message.tags }}{% endif %} toast-message">{{ message }}</li>
         {% endfor %}
     </ul>
     {% endif %}
 
     {% block content %}
     {% endblock content %}
+
+    {% if messages %}
+    <script src="{% static 'js/toast.js' %}"></script>
+    {% endif %}
 </body>
 </html>

@@ -10,9 +10,27 @@
 <div class="user_container">
     <form method="POST">
         {% csrf_token %}
-        {{form.username}}<br>
-        {{form.password1}}<br>
-        {{form.password2}}<br>
+
+        {% for field in form %}
+            {% if form.errors %}
+                <div class="field-error">
+                    {% for error in field.errors %}
+                        <strong>{{ error|escape }}</strong><br>
+                    {% endfor %}
+                    {{ field }}
+                </div>
+            {% else %}
+                {{ field }}<br>
+            {% endif %}
+
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="form-error">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+
+
         <br><img src="{% static 'images/logo.png' %}"width="50" height="50"></br>
         <button type="submit">Registrer</button>
     </form>
