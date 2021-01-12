@@ -8,5 +8,5 @@ class Question(models.Model):
 class Quizark(models.Model):
     title = models.CharField(max_length=100)
     file = models.FileField()
-    question = models.ManyToManyField(Question)
+    question = models.ManyToManyField(Question, blank=True)
 
