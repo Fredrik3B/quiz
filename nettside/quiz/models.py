@@ -1,4 +1,5 @@
 from django.db import models
+from .utils import file_parser
 
 # Create your models here.
 class Question(models.Model):
@@ -9,4 +10,7 @@ class Quizark(models.Model):
     title = models.CharField(max_length=100)
     file = models.FileField()
     question = models.ManyToManyField(Question, blank=True)
+
+    def save(self, *args, **kwargs):
+        questions = file_parser(self.file)
 
