@@ -13,4 +13,9 @@ class Quizark(models.Model):
 
     def save(self, *args, **kwargs):
         questions = file_parser(self.file)
+        for question, answer in questions.items():
+            new_question = Question(question=question, answer=answer)
+            new_question.save()
+            self.question.add(new_question)
 
+        super(Quizark, self).save(*args, **kwargs)
