@@ -7,5 +7,5 @@ def random_user():
     return adj[randint(0, len(adj))].capitalize() + sub[randint(0, len(sub))].capitalize()
 
 class QuizCodeForm(forms.Form):
-    code = forms.IntegerField(label='Kode: ', max_value=100000, min_value=999999)
+    code = forms.IntegerField(label='Kode: ', min_value=100000, max_value=999999)
     username = forms.CharField(required=False, max_length="100", initial=random_user)

@@ -7,7 +7,9 @@ Spill Quizing
 <form method="POST">
     {% csrf_token %}
     {{ form.code }}
-    {{ form.username }}
+    {% if not user.is_authenticated %}
+        {{ form.username }}
+    {% endif %}
     <button type="submit">Spill</button>
 </form>
 {% endblock content %}
