@@ -12,7 +12,9 @@ def quizcode(request):
         if form.is_valid():
             quiz_code = form.cleaned_data['code']
             if request.user.is_authenticated:
+                print(request.user)
                 player = Player.objects.create(user=request.user)
+                print(player)
             else:
                 randusername = form.cleaned_data['username']
                 player = Player.objects.create(username=randusername, temporary=True)
