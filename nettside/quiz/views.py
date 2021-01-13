@@ -13,9 +13,10 @@ def quizcode(request):
             quiz_code = form.cleaned_data['code']
             if request.user.is_authenticated:
                 player = Player.objects.create(user=request.user)
-                return redirect("quiz:play_quiz", quiz_id=quiz_code)
-            randusername = form.cleaned_data['username']
-            player = Player.objects.create(username=randusername, temporary=True)
+            else:
+                randusername = form.cleaned_data['username']
+                player = Player.objects.create(username=randusername, temporary=True)
+            request.session["player"] = player.uuid
             return redirect("quiz:play_quiz", quiz_id=quiz_code)
 
 
