@@ -23,4 +23,4 @@ class Quizark(models.Model):
             self.question.add(new_question)
 
     def __str__(self):
-        self.title
+        return self.title
