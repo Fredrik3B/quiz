@@ -6,6 +6,8 @@ Spill Quizing
 {% block content %}
 <form method="POST">
     {% csrf_token %}
-    {{ form }}
+    {{ form.code }}
+    {{ form.username }}
+    <button type="submit">Spill</button>
 </form>
 {% endblock content %}
