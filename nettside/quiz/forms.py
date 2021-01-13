@@ -8,4 +8,4 @@ def random_user():
 
 class QuizCodeForm(forms.Form):
     code = forms.IntegerField(label='Kode: ', max_value=100000, min_value=999999)
-    username = form.CharField(max_length="100", default=random_user)
+    username = forms.CharField(required=False, max_length="100", initial=random_user)
