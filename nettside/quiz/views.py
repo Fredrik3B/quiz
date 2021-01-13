@@ -21,7 +21,7 @@ def quizcode(request):
 
 
     form = QuizCodeForm()
-    return render(request, 'quiz/quizcode.html')
+    return render(request, 'quiz/quizcode.html', {"form": form})
 
 def play_quiz(requset, quiz_id):
     return render(request, 'quiz/play_quiz.html')
