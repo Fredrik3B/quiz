@@ -3,9 +3,9 @@ def file_parser(quiz_file):
     with open(quiz_file, "r") as file:
         lines = file.readlines()
         for line in lines:
-            question, answer = linje.split(":")
-            question = spørsmål.strip()
-            answer = svar.strip().lower()
+            question, answer = line.split(":")
+            question = question.strip()
+            answer = answer.strip().lower()
             all_questions[question] = answer
 
     return all_questions

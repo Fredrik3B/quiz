@@ -12,10 +12,9 @@ class Quizark(models.Model):
     question = models.ManyToManyField(Question, blank=True)
 
     def save(self, *args, **kwargs):
-        questions = file_parser(self.file)
+        questions = file_parser(self.file.name)
+        super(Quizark, self).save(*args, **kwargs)
         for question, answer in questions.items():
             new_question = Question(question=question, answer=answer)
             new_question.save()
             self.question.add(new_question)
-
-        super(Quizark, self).save(*args, **kwargs)
