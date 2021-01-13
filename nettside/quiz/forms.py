@@ -1,0 +1,11 @@
+from django import forms
+from random import randint
+
+def random_user():
+    adj = ["kul", "teit", "rar", "gul", "glittrende"]
+    sub = ["pølse", "ku", "gris", "ape", "sykkel", "sko", "esel"]
+    return adj[randint(len(adj))] + sub[randint(len(sub))]
+
+class QuizCodeForm(forms.Form):
+    code = forms.IntegerField(label='Kode: ', max_value=100000, min_value=999999)
+    username = form.CharField(max_length="100", default=random_user)

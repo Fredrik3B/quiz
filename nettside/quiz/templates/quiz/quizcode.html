@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+Spill Quizing
+{% endblock title %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+</form>
+{% endblock content %}

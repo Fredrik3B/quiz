@@ -4,7 +4,11 @@ from django.shortcuts import render
 def quizside(request):
     return render(request, 'quiz/quizside.html')
 
-def play_quiz(requset):
+def quizcode(request):
+    if
+    return render(request, 'quiz/quizcode.html')
+
+def play_quiz(requset, quiz_id):
     return render(request, 'quiz/play_quiz.html')
 
 
