@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import QuizCodeForm
+from accounts.models import Player
 
 # Create your views here.
 def quizside(request):
@@ -12,6 +13,7 @@ def quizcode(request):
             quiz_code = form.cleaned_data['code']
             if request.user.is_authenticated:
                 return redirect("quiz:play_quiz", quiz_id=quiz_code)
+            temp_player = Pa
 
 
     form = QuizCodeForm()
