@@ -1,6 +1,4 @@
 from django import forms
-from random import randint
-from datetime import datetime
 from .models import Quizark
 
 def random_user():
@@ -9,10 +7,11 @@ def random_user():
     return adj[randint(0, len(adj)-1)].capitalize() + sub[randint(0, len(sub)-1)].capitalize()
 
 class QuizCodeForm(forms.Form):
+    # Må fikse bug her
     code = forms.IntegerField(label='Kode: ', min_value=100000, max_value=999999)
     username = forms.CharField(required=False, max_length="100", initial=random_user)
 
 
 class QuizCreateForm(forms.Form):
-    quizark = forms.ModelMultipleChoiceField(queryset=Quizark.objects.all())
+    quizark = forms.ModelChoiceField(queryset=Quizark.objects.all())
 

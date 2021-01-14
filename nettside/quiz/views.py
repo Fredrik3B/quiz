@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .forms import QuizCodeForm, QuizCreateForm
 from accounts.models import Player
+from .models import Quizark
 from datetime import datetime
 from random import randint
 
@@ -52,21 +53,17 @@ class CreateQuiz(LoginRequiredMixin, View):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
-        print("hh")
         form = QuizCreateForm(request.POST)
 
         if form.is_valid():
-            new_quiz = form.cleaned_data["quizark"]
-            return redirect("quiz:play_quiz", quiz_id=self.create_quiz_code())
+            selected_quiz_id = form.cleaned_data["quizark"].id
+            quiz_id = self.create_quiz_code()
+            print(selected_quiz_id)
+            new_created_quiz = Quizark.objects.get(pk=selected_quiz_id)
+            new_created_quiz.playing_id =  True
+            new_created_quiz.save()
+            return redirect("quiz:play_quiz", quiz_id=quiz_id)
 
         return render(request, self.template_name, {'form': form})
-
-
-
-
-
-
-
-
 
 
