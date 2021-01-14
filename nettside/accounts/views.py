@@ -29,11 +29,6 @@ def register(request):
     return render(request, template_name, {"form":form})
 
 
-
-
-
-
-
 def login_user(request):
     if request.user.is_authenticated:
         messages.warning(request, "Du er allerede logget inn, vil du logge inn som en annen bruker må du først logge deg ut")

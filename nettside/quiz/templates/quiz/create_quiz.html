@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Lag ny quiz!
+{% endblock title %}
+
+{% block content %}
+<form method="POST">
+{% csrf_token %}
+{% for field in form %}
+    {{ field }}
+{% endfor %}
+<button type="submit">Lag</button>
+</form>
+
+{% endblock content %}

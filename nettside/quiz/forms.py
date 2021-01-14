@@ -1,5 +1,7 @@
 from django import forms
 from random import randint
+from datetime import datetime
+from .models import Quizark
 
 def random_user():
     adj = ["kul", "teit", "rar", "gul", "glittrende"]
@@ -9,3 +11,8 @@ def random_user():
 class QuizCodeForm(forms.Form):
     code = forms.IntegerField(label='Kode: ', min_value=100000, max_value=999999)
     username = forms.CharField(required=False, max_length="100", initial=random_user)
+
+
+class QuizCreateForm(forms.Form):
+    quizark = forms.ModelMultipleChoiceField(queryset=Quizark.objects.all())
+

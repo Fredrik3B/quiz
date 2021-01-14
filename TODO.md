@@ -25,3 +25,9 @@
 - [x] Påloggingside
 - [x] Registreringside
 - [ ] Side med spørsmål
+
+
+## Nytt:
+
+- [ ] I brukerens session blir det lagret om brukeren spiller, slik at brukeren ikke får spilt to spill samtidig
+- [ ]
