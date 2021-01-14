@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
+
+{% block title %}
+Quizing - Hjem
+{% endblock title %}
+
 {% block content %}
 
-<h1><font face="Arial"><center>Hei og velkommen til Quizing, dette er en test</h1></font></center>
+<h1><font face="Arial">Hei og velkommen til Quizing, dette er en test</font></h1>
+<a href="{% url 'quiz:quizcode' %}">Spill her!</a>
 
 {% endblock content %}
