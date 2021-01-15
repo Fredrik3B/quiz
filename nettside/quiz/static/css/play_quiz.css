@@ -1,0 +1,14 @@
+#container {
+    margin: 2rem 10%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.quizcard {
+    background-color: #c4cdc6;
+    padding: 1rem;
+    flex-basis: 33.3333%;
+    box-sizing: border-box;
+    border: 3px dotted black;
+}
