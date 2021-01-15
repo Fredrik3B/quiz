@@ -4,9 +4,13 @@
 Spiller quiz
 {% endblock title %}
 
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/play_quiz.css' %}">
+{% endblock css %}
+
 {% block content %}
 <h1>Wow</h1>
 <div id="container"></div>
-{% load static %}
 <script src="{% static 'js/quiz_api.js' %}"></script>
 {% endblock content %}
