@@ -20,9 +20,10 @@ class Quizark(models.Model):
         questions = file_parser(self.file.name)
         super(Quizark, self).save(*args, **kwargs)
         for question, answer in questions.items():
-            new_question = Question(question=question, answer=answer)
-            new_question.save()
-            self.question.add(new_question)
+            if not Question.objects.filter(question=question):
+                new_question = Question(question=question, answer=answer)
+                new_question.save()
+                self.question.add(new_question)
 
     def __str__(self):
         return self.title
