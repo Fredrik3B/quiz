@@ -20,7 +20,6 @@ def quizcode(request):
             if request.user.is_authenticated:
                 print(request.user)
                 player = Player.objects.create(username=request.user.username, user=request.user)
-                print(player)
             else:
                 randusername = form.cleaned_data['username']
                 player = Player.objects.create(username=randusername, temporary=True)
@@ -60,7 +59,8 @@ class CreateQuiz(LoginRequiredMixin, View):
             quiz_id = self.create_quiz_code()
             print(selected_quiz_id)
             new_created_quiz = Quizark.objects.get(pk=selected_quiz_id)
-            new_created_quiz.playing_id =  True
+            new_created_quiz.is_playing = True
+            new_created_quiz.playing_id = quiz_id
             new_created_quiz.save()
             return redirect("quiz:play_quiz", quiz_id=quiz_id)
 

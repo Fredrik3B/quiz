@@ -13,7 +13,8 @@ class Quizark(models.Model):
     title = models.CharField(max_length=100)
     file = models.FileField()
     question = models.ManyToManyField(Question, blank=True)
-    playing_id = models.BooleanField(default=False)
+    playing_id = models.IntegerField(default=False)
+    is_playing = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         questions = file_parser(self.file.name)
