@@ -49,7 +49,13 @@ class CreateQuiz(LoginRequiredMixin, View):
 
     def get(self, request):
         form = QuizCreateForm()
-        return render(request, self.template_name, {'form': form})
+        if request.user:
+            fav_quizes = request.user.favoritter.all()
+        else:
+            fav_quizes = None
+
+        quizes = Quizark.objects.all()
+        return render(request, self.template_name, {'form': form, "favs": fav_quizes, "quizes": quizes})
 
     def post(self, request):
         form = QuizCreateForm(request.POST)

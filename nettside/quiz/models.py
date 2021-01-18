@@ -15,6 +15,7 @@ class Quizark(models.Model):
     question = models.ManyToManyField(Question, blank=True)
     playing_id = models.IntegerField(default=False)
     is_playing = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=False)
 
     def save(self, *args, **kwargs):
         questions = file_parser(self.file.name)
