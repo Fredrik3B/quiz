@@ -10,38 +10,60 @@ function makeQuestions(data) {
     const questions = data.question;
 
     for (const question of questions) {
+
+        // lage spørsmålkort med en form
         var questionCard = document.createElement("div");
         questionCard.className = "quizcard";
+        var questionCardForm = document.createElement("form");
+        questionCardForm.className = "question-form";
+
+        // lage tittel fra spørsmål og legge inni spørsmålkort
         var questexttionTitle = document.createElement("h3");
         questexttionTitle.appendChild(document.createTextNode(question.question));
         questionCard.appendChild(questexttionTitle);
 
+        // lage input til svar inne i form
         var question_input = document.createElement("input")
         question_input.type = "text"
         question_input.className = "answerinput";
-        questionCard.appendChild(question_input);
+        questionCardForm.appendChild(question_input);
 
         var question_submit = document.createElement("button");
         question_submit.appendChild(document.createTextNode("Sjekk Svar"));
+        questionCardForm.appendChild(question_submit)
 
         document.getElementById("container")
             .appendChild(questionCard)
-            .appendChild(question_submit);
+            .appendChild(questionCardForm)
 
 
     };
 }
 
-function checkButttonsInit() {
-    var container = document.getElementById("container");
-    container.querySelectorAll("button").forEach(button => console.log(button));
+function sendAnswer(form) {
+    var formData = new FormData(form)
+    // console.log(formData)
+    fetch('api/', {
+        method: 'POST',
+        body: new FormData(formElem)
+    });
+
+}
+
+function submitListener() {
+    document.querySelectorAll(".question-form").forEach(
+        form => form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            sendAnswer(form)
+        })
+    )
 }
 
 function getQuestions() {
     fetch("api/")
         .then(validateResponse)
         .then(data => makeQuestions(data))
-        .then(checkButttonsInit)
+        .then(submitListener)
 
 };
 getQuestions();
