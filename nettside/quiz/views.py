@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from .forms import QuizCodeForm, QuizCreateForm
-from accounts.models import Player
-from .models import Quizark
+from django.core.exceptions import PermissionDenied
+
 from datetime import datetime
 from random import randint
+
+from accounts.models import Player
+from .forms import QuizCodeForm, QuizCreateForm
+from .models import Quizark
 
 # Create your views here.
 def quizside(request):
@@ -31,7 +34,11 @@ def quizcode(request):
     return render(request, 'quiz/quizcode.html', {"form": form})
 
 def play_quiz(request, quiz_id):
-    print(request.session["player"])
+    # Bør kanskje fikses litt?
+    try:
+        request.session["player"]
+    except KeyError:
+        raise PermissionDenied("Du har ingen bruker")
     return render(request, 'quiz/play_quiz.html')
 
 class CreateQuiz(LoginRequiredMixin, View):

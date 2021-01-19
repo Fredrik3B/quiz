@@ -25,6 +25,7 @@ function makeQuestions(data) {
         // lage input til svar inne i form
         var question_input = document.createElement("input")
         question_input.type = "text"
+        question_input.name = "answer"
         question_input.className = "answerinput";
         questionCardForm.appendChild(question_input);
 
@@ -40,13 +41,31 @@ function makeQuestions(data) {
     };
 }
 
+// finner csrf_token, fra django docs
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+const csrf_token = getCookie("csrftoken")
 function sendAnswer(form) {
-    var formData = new FormData(form)
-    // console.log(formData)
+    const formData = new FormData(form);
     fetch('api/', {
+        headers: {'X-CSRFToken': csrf_token},
         method: 'POST',
-        body: new FormData(formElem)
-    });
+        body: formData
+    }).then(validateResponse);
 
 }
 

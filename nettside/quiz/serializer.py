@@ -11,3 +11,8 @@ class QuizarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quizark
         fields = ['title', 'question']
+
+class CheckAnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = ['answer']
