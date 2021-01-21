@@ -3,6 +3,7 @@ from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.contrib import messages
 
 from datetime import datetime
 from random import randint
@@ -36,9 +37,13 @@ def quizcode(request):
 def play_quiz(request, quiz_id):
     # Bør kanskje fikses litt?
     try:
-        request.session["player"]
-    except KeyError:
+        Player.objects.get(uuid=request.session["player"])
+    except Player.DoesNotExist:
         raise PermissionDenied("Du har ingen bruker")
+    if not request.session.get("is_playing") == quiz_id:
+        messages.warning(request, f"Du spiller allerede en quiz")
+        return redirect("quiz:quiz")
+    request.session["is_playing"] = quiz_id
     return render(request, 'quiz/play_quiz.html')
 
 class CreateQuiz(LoginRequiredMixin, View):

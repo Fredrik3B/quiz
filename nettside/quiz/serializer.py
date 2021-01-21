@@ -4,7 +4,7 @@ from .models import Quizark, Question
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ['question']
+        exclude = ["answer"]
 
 class QuizarkSerializer(serializers.ModelSerializer):
     question = QuestionSerializer(many=True, read_only=True)
@@ -13,6 +13,8 @@ class QuizarkSerializer(serializers.ModelSerializer):
         fields = ['title', 'question']
 
 class CheckAnswerSerializer(serializers.ModelSerializer):
+    # id = serializers.ReadOnlyField()
+    id = serializers.IntegerField()
     class Meta:
         model = Question
-        fields = ['answer']
+        fields = ['id', 'answer']

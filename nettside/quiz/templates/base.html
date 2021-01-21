@@ -15,12 +15,16 @@
 <body>
     <nav>
         <ul>
-            <img src="{% static 'images/logo.png' %}"width="30" height="30">
+            <li>
+                <a id="logo" href="{% url 'quiz:quiz' %}">
+                    <img src="{% static 'images/logo.png' %}"><span>Hjem</span>
+                </a>
+            </li>
             {% if user.is_authenticated %}
-                <li><font face="Arial"><a href="{% url 'accounts:logout' %}">Logg ut</a></font></li>
+                <li><a href="{% url 'accounts:logout' %}">Logg ut</a></li>
                 <li><a href="{% url 'quiz:create_quiz' %}">lag ny quiz</a></li>
             {% else %}
-                <li><font face="Arial"><a href="{% url 'accounts:login' %}">Logg inn</a></font></li>
+                <li><a href="{% url 'accounts:login' %}">Logg inn</a></li>
             {% endif %}
         </ul>
     </nav>

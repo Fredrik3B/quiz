@@ -18,8 +18,8 @@ class Quizark(models.Model):
     created = models.DateTimeField(auto_now_add=False)
 
     def save(self, *args, **kwargs):
-        questions = file_parser(self.file.name)
         super(Quizark, self).save(*args, **kwargs)
+        questions = file_parser(self.file.name)
         for question, answer in questions.items():
             if not Question.objects.filter(question=question):
                 new_question = Question(question=question, answer=answer)
