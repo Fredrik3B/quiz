@@ -5,28 +5,32 @@ Lag ny quiz!
 {% endblock title %}
 
 {% block content %}
-<form method="POST">
-{% csrf_token %}
-{% for field in form %}
-    {{ field }}
-{% endfor %}
-<button type="submit">Lag</button>
-</form>
+<div class="container">
+    <h1>Lag en quiz!</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+        {{ field }}
+        {% endfor %}
+        <button type="submit">Lag</button>
+    </form>
 
-{% for quiz in favs %}
+    {% for quiz in favs %}
     {{ quiz }}
-{% endfor %}
-<hr>
-{% for quiz in quizes %}
+    {% endfor %}
+    <hr>
+    <h2>Alle quizene</h2>
+    {% for quiz in quizes %}
     <h3>{{ quiz.title }}</h3>
     <strong>Quiz nr: {{ quiz.id }}</strong>
     <ul>
-    {% for q in quiz.question.all|slice:":3"   %}
+        {% for q in quiz.question.all|slice:":3"   %}
         <li>{{ q.question }}</li>
-    {% endfor %}
+        {% endfor %}
     </ul>
     <button value="{{ quiz.id }}" class="choose">Velg</button>
-{% endfor %}
+    {% endfor %}
+</div>
 {% load static %}
 <script src="{% static 'js/create_quiz.js' %}"></script>
 {% endblock content %}
