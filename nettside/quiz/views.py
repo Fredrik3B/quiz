@@ -40,7 +40,7 @@ def play_quiz(request, quiz_id):
         Player.objects.get(uuid=request.session["player"])
     except Player.DoesNotExist:
         raise PermissionDenied("Du har ingen bruker")
-    if not request.session.get("is_playing") == quiz_id:
+    if not request.session.get("is_playing") == quiz_id and request.session.get("is_playing"):
         messages.warning(request, f"Du spiller allerede en quiz")
         return redirect("quiz:quiz")
     request.session["is_playing"] = quiz_id
