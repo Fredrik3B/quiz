@@ -16,4 +16,6 @@ class Player(models.Model):
 
 
     def __str__(self):
-        return self.user
+        if self.user:
+            return str(self.user)
+        return self.uuid.hex

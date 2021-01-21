@@ -2,11 +2,15 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from .forms import QuizCodeForm, QuizCreateForm
-from accounts.models import Player
-from .models import Quizark
+from django.core.exceptions import PermissionDenied
+from django.contrib import messages
+
 from datetime import datetime
 from random import randint
+
+from accounts.models import Player
+from .forms import QuizCodeForm, QuizCreateForm
+from .models import Quizark
 
 # Create your views here.
 def quizside(request):
@@ -20,7 +24,6 @@ def quizcode(request):
             if request.user.is_authenticated:
                 print(request.user)
                 player = Player.objects.create(username=request.user.username, user=request.user)
-                print(player)
             else:
                 randusername = form.cleaned_data['username']
                 player = Player.objects.create(username=randusername, temporary=True)
@@ -32,7 +35,15 @@ def quizcode(request):
     return render(request, 'quiz/quizcode.html', {"form": form})
 
 def play_quiz(request, quiz_id):
-    print(request.session["player"])
+    # Bør kanskje fikses litt?
+    try:
+        Player.objects.get(uuid=request.session["player"])
+    except Player.DoesNotExist:
+        raise PermissionDenied("Du har ingen bruker")
+    if not request.session.get("is_playing") == quiz_id:
+        messages.warning(request, f"Du spiller allerede en quiz")
+        return redirect("quiz:quiz")
+    request.session["is_playing"] = quiz_id
     return render(request, 'quiz/play_quiz.html')
 
 class CreateQuiz(LoginRequiredMixin, View):
@@ -50,7 +61,13 @@ class CreateQuiz(LoginRequiredMixin, View):
 
     def get(self, request):
         form = QuizCreateForm()
-        return render(request, self.template_name, {'form': form})
+        if request.user:
+            fav_quizes = request.user.favoritter.all()
+        else:
+            fav_quizes = None
+
+        quizes = Quizark.objects.all()
+        return render(request, self.template_name, {'form': form, "favs": fav_quizes, "quizes": quizes})
 
     def post(self, request):
         form = QuizCreateForm(request.POST)
@@ -60,7 +77,8 @@ class CreateQuiz(LoginRequiredMixin, View):
             quiz_id = self.create_quiz_code()
             print(selected_quiz_id)
             new_created_quiz = Quizark.objects.get(pk=selected_quiz_id)
-            new_created_quiz.playing_id =  True
+            new_created_quiz.is_playing = True
+            new_created_quiz.playing_id = quiz_id
             new_created_quiz.save()
             return redirect("quiz:play_quiz", quiz_id=quiz_id)
 

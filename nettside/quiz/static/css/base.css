@@ -1,3 +1,45 @@
-li {
+body {
+    margin: 0;
+    font-family: Arial;
+}
 
+nav ul {
+    background-color: lightcoral;
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    /*! height: 100%; */
+}
+nav li {
+    flex-basis: 7%;
+}
+nav li:first-child {
+    margin-left: 3rem;
+}
+nav a {
+    display: block;
+    padding: 1rem;
+    text-align: center;
+}
+nav a:hover {
+    background-color: palegoldenrod;
+}
+#logo img {
+    height: 2rem;
+}
+#logo {
+    padding: 0.48rem;
+    position: relative;
+    text-align: start;
+}
+#logo span {
+    position: absolute;
+    top: 1rem;
+    margin-left: 7px;
+}
+.container {
+    margin: 3% 10%;
 }

@@ -16,6 +16,6 @@
         <img src="{% static 'images/logo.png' %}"width="50" height="50"></br>
         <button type="submit">Logg inn</button>
     </form>
-    <span><font face="Arial">Har du ikke konto <a href="{% url 'accounts:register' %}"><strong>registrer deg her</strong></font></a>!</span>
+    <span><a href="{% url 'accounts:register' %}"><strong>Registrer deg her</strong></a>!</span>
 </div>
 {% endblock %}

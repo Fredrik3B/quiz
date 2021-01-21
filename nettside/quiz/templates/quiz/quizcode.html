@@ -4,12 +4,17 @@ Spill Quizing
 {% endblock title %}
 
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
-    {{ form.code }}
-    {% if not user.is_authenticated %}
-        {{ form.username }}
-    {% endif %}
-    <button type="submit">Spill</button>
-</form>
+<div class="container">
+    <h1>Skriv inn koden for å spille quiz</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="code">Quizkoden: </label>
+        {{ form.code }}<br>
+        {% if not user.is_authenticated %}
+        <label for="username">Midlertidig brukernavn: </label>
+        {{ form.username }}<br>
+        {% endif %}
+        <button type="submit">Spill</button>
+    </form>
+</div>
 {% endblock content %}

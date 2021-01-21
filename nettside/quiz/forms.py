@@ -1,5 +1,6 @@
 from django import forms
 from .models import Quizark
+from random import randint
 
 def random_user():
     adj = ["kul", "teit", "rar", "gul", "glittrende"]
